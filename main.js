@@ -27,3 +27,7 @@ let places = [
     const marker = L.marker(place.coords).addTo(map);
     marker.bindPopup(`<b>${place.name}</b>`);
  });
+export const addMarkerToMap= (coords,posto) =>{
+   const marker= L.marker(coords).addTo(map);
+   marker.bindPopup(<b>${posto}$</b>);
+};
