@@ -1,4 +1,4 @@
-//import { addMarkerToMap } from './main.js'; // Importiamo addMarkerToMap
+import { addMarkerToMap } from './main.js'; // Importiamo addMarkerToMap
 
 const createForm = (parentElement) => {
     let data = {};
