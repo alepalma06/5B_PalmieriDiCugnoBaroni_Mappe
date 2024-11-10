@@ -1,3 +1,4 @@
+//posti gia presenti
 let places = [
    {
       name: "Piazza del Duomo",
@@ -27,7 +28,8 @@ places.forEach((place) => {
    const marker = L.marker(place.coords).addTo(map);
    marker.bindPopup(`<b>${place.name}</b>`);
 });
-export const addMarkerToMap = (coords, posto) => {
+//creazione e export della funziona add che viene chiamata dalla form
+export const add = (coords, posto) => {
   const marker = L.marker(coords).addTo(map);
    marker.bindPopup(`<b>${posto}</b>`);
 };
