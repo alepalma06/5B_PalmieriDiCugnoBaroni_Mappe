@@ -27,10 +27,12 @@ const createForm = (parentElement) => {
 const formElement = document.getElementById("form");
 const form = createForm(formElement);
 //pressione bottone form
-form.onsubmit((resultform) => {  
-    const template = "https://us1.locationiq.com/v1/search?key=pk.4c152dca3f2bafd2bc569da91faf2567&q=%LUOGO&format=json&"; 
+form.onsubmit((resultform) => { 
+    fetch("conf.json").then(r => r.json()).then(conf => {
+        const template = "https://us1.locationiq.com/v1/search?key=%TOKEN &q=%LUOGO &format=json&"; 
     //replace %luogo con input della form 
-    let url=template.replace("%LUOGO",resultform.luogo)  
+    let url=template.replace("%LUOGO",resultform.luogo)
+    url=url.replace("%TOKEN",conf.token)  
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -40,6 +42,8 @@ form.onsubmit((resultform) => {
             //chiamo la funzione add 
             add(coords, posto);
             })
+    })
+    
     console.log(resultform.luogo);
     document.querySelector("#luogo").value = "";
 });
