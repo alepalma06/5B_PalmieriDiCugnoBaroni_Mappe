@@ -22,17 +22,19 @@ const createForm = (parentElement) => {
         }
     };
 };
-
+let token_mappe="";
+fetch("conf.json").then(r => r.json()).then(conf => {
+    token_mappe=conf.token;
+});
 //inizializzazione form
 const formElement = document.getElementById("form");
 const form = createForm(formElement);
 //pressione bottone form
 form.onsubmit((resultform) => { 
-    fetch("conf.json").then(r => r.json()).then(conf => {
-        const template = "https://us1.locationiq.com/v1/search?key=%TOKEN &q=%LUOGO &format=json&"; 
+    const template = "https://us1.locationiq.com/v1/search?key=%TOKEN&q=%LUOGO&format=json&"; 
     //replace %luogo con input della form 
     let url=template.replace("%LUOGO",resultform.luogo)
-    url=url.replace("%TOKEN",conf.token)  
+    url=url.replace("%TOKEN",token_mappe)  
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -42,7 +44,7 @@ form.onsubmit((resultform) => {
             //chiamo la funzione add 
             add(coords, posto);
             })
-    })
+
     
     console.log(resultform.luogo);
     document.querySelector("#luogo").value = "";
